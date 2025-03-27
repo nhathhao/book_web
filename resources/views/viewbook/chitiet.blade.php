@@ -1,15 +1,16 @@
 <html>
-    <body>
-        @extends("layouts.sach_layout")
-        @section("title","Sách")
-        @section("content")   
-    <style>
-        .info
-        {
-            display:grid;
-            grid-template-columns:repeat(2,30% 70%);
-        }
-    </style>
+<body>
+    <x-book-layout>
+        <x-slot name='title'>
+            Sách
+        </x-slot>  
+        <style>
+            .info
+            {
+                display:grid;
+                grid-template-columns:repeat(2,30% 70%);
+            }
+        </style>
         <h4> {{$data->tieu_de}} </h4>
         <div class='info'>
             <div> 
@@ -22,13 +23,13 @@
                 Hình thức bìa: <b> {{$data->hinh_thuc_bia}}</b> <br>
             </div>             
         </div>
-         
+        
         <div class='row'> 
             <div class='col-sm-12'> 
                 <b> Mô tả: </b> <br>
                 {{$data->mo_ta}}
             </div>            
         </div>
-        @endsection
-    </body>
+    </x-book-layout>
+</body>
 </html>
