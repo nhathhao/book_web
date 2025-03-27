@@ -18,4 +18,10 @@ class LayoutController extends Controller
         $data = DB::select("select * from sach where id_the_loai = ?",[$id]);
         return view("viewbook.index", compact("data"));
     }
+
+    function chitiet($id)
+    {
+        $data = DB::select("select * from sach where id = ?",[$id])[0];
+        return view("viewbook.chitiet", compact("data"));
+    }
 }
