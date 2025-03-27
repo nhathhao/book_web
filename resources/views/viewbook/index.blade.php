@@ -1,6 +1,7 @@
-@extends("layouts.sach_layout")
-@section("title","Sách")
-@section("content")
+<x-book-layout>
+    <x-slot name='title'>
+        Sách
+    </x-slot>
     <div class='list-book'>
         @foreach($data as $row)
         <div class='book'>
@@ -12,4 +13,4 @@
         </div>
         @endforeach
     </div>
-@endsection
+</x-book-layout>
