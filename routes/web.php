@@ -7,3 +7,5 @@ Route::get('/', function () {
 });
 
 Route::get('/sach','App\Http\Controllers\LayoutController@sach');
+
+Route::get('/sach/theloai/{id}','App\Http\Controllers\LayoutController@theloai');
