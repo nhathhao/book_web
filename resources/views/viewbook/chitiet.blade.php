@@ -22,8 +22,7 @@
                 Tác giả: <b> {{$data->tac_gia}}</b> <br>
                 Hình thức bìa: <b> {{$data->hinh_thuc_bia}}</b> <br>
             </div>             
-        </div>
-        
+        </div>    
         <div class='row'> 
             <div class='col-sm-12'> 
                 <b> Mô tả: </b> <br>
