@@ -7,8 +7,21 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Book;
 use App\Models\Category;
 
+
 class BookController extends Controller
 {
+    /* function laythongtintheloai()
+    {
+        $the_loai_sach = DB::table("the_loai")->get();
+    return view("qlsach.the_loai",compact("the_loai_sach"));
+    }
+    function laythongtinsach()
+    {
+        $sach = DB::table("sach")->select("tieu_de","tac_gia")
+        ->where("nha_xuat_ban","Văn Học")->get();
+        return view("qlsach.thong_tin_sach",compact("sach"));
+    } */
+
     function laythongtintheloai()
     {
         $the_loai_sach = Category::all();
@@ -76,6 +89,8 @@ class BookController extends Controller
         $request->file('file_anh_bia')->storeAs('public/book_image/', $fileName);
         $data['file_anh_bia'] = $fileName;
         }
+         
+        //$data = $request->except("id","_token");
 
         $message = "";
         if($action=="add")
@@ -106,4 +121,120 @@ class BookController extends Controller
         DB::table("sach")->where("id",$id)->delete();
         return redirect()->route('booklist')->with('status', "Xóa thành công");
     }
+
+    public function cartadd(Request $request)
+    {
+        $request->validate([
+            "id"=>["required","numeric"],
+            "num"=>["required","numeric"]
+        ]);
+        $id = $request->id;
+        $num = $request->num;
+        $total = 0;
+        $cart = [];
+        if(session()->has('cart'))
+        {
+            $cart = session()->get("cart");
+            
+            if(isset($cart[$id]))
+            $cart[$id] += $num;
+            else
+            $cart[$id] = $num ;
+        }
+        else
+        {
+            $cart[$id] = $num ;
+        }
+        session()->put("cart",$cart);
+        return count($cart);
+    }
+
+    public function order()
+    {
+        $cart=[];
+        $data =[];
+        $quantity = [];
+        if(session()->has('cart'))
+        {
+            $cart = session("cart");
+            $list_book = [];
+            foreach($cart as $id=>$value)
+            {
+                $quantity[$id] = $value;
+                $list_book []=$id;
+            }
+            if (!empty($list_book)) {
+                $data = DB::table("sach")
+                    ->whereIn("id", $list_book)  // Sử dụng whereIn thay vì whereRaw
+                    ->get();
+            }
+        }
+        return view("viewbook.order",compact("quantity","data"));
+    }
+
+    public function cartdelete(Request $request)
+    {
+        $request->validate([
+            "id"=>["required","numeric"]
+        ]);
+        $id = $request->id;
+        $total = 0;
+        $cart = [];
+        if(session()->has('cart'))
+        {
+            $cart = session()->get("cart");
+            unset($cart[$id]);
+        }   
+        session()->put("cart",$cart);
+        return redirect()->route('order')->with('success', 'Sản phẩm đã được xóa!');
+    }
+
+    public function ordercreate(Request $request)
+    {
+        $request->validate([
+            "hinh_thuc_thanh_toan"=>["required","numeric"]
+        ]);
+        $data = [];
+        $quantity = [];
+        if(session()->has('cart'))
+        {
+            $order = ["ngay_dat_hang"=>DB::raw("now()"),"tinh_trang"=>1,
+                "hinh_thuc_thanh_toan"=>$request->hinh_thuc_thanh_toan,
+                "user_id"=>Auth::user()->id];
+            DB::transaction(function () use ($order) {
+                $id_don_hang = DB::table("don_hang")->insertGetId($order);
+                $cart = session("cart");
+                $list_book = "";
+                $quantity = [];
+                foreach($cart as $id=>$value)
+                {
+                    $quantity[$id] = $value;
+                    $list_book .=$id.", ";
+                }
+                $list_book = substr($list_book, 0,strlen($list_book)-2);
+                $data = DB::table("sach")->whereRaw("id in (".$list_book.")")->get();
+                $detail = [];
+                foreach($data as $row)
+                {
+                    $detail[] = ["ma_don_hang"=>$id_don_hang,"sach_id"=>$row->id,
+                        "so_luong"=>$quantity[$row->id],"don_gia"=>$row->gia_ban];
+                }
+                DB::table("chi_tiet_don_hang")->insert($detail);
+                session()->forget('cart');
+            });
+        }
+        return view("viewbook.order", compact('data','quantity'));
+    }
+
+    public function bookview(Request $request)
+    {
+        $the_loai = $request->input("the_loai");
+        $data = [];
+        if($the_loai!="")
+            $data = DB::select("select * from sach where the_loai = ?",[$the_loai]);
+        else
+            $data = DB::select("select * from sach order by gia_ban asc limit 0,10");
+        return view("viewbook.bookview", compact("data"));
+    }
+
 }
