@@ -51,3 +51,10 @@ Route::get('/book/edit/{id}','App\Http\Controllers\BookController@bookedit')
 ->middleware('auth')->name("bookedit");
 
 Route::get('/order','App\Http\Controllers\BookController@order')->name('order');
+Route::post('/cart/add','App\Http\Controllers\BookController@cartadd')->name('cartadd');
+
+Route::post('/cart/delete','App\Http\Controllers\BookController@cartdelete')->name('cartdelete');
+Route::post('/order/create','App\Http\Controllers\BookController@ordercreate')
+->middleware('auth')->name('ordercreate');
+
+Route::post('/bookview','App\Http\Controllers\BookController@bookview')->name('bookview');
