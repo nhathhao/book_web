@@ -38,8 +38,7 @@ class AccountController extends Controller
 
         DB::table("users")->where("id",$id)->update($data);
         
-        return redirect()->route('account')->with('status', 'Cập
-        nhật thành công');
+        return redirect()->route('account')->with('status', 'Cập nhật thành công');
     }
 
 }
