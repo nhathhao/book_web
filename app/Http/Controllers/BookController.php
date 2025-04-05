@@ -73,7 +73,7 @@ class BookController extends Controller
 
         if ($request->hasFile("file_anh_bia")) {
             $fileName = $request->input("tieu_de") . "_" . rand(1000000, 9999999) . '.' . $request->file('file_anh_bia')->extension();
-            $request->file('file_anh_bia')->storeAs('public/book_image/', $fileName);
+            $request->file('file_anh_bia')->storeAs('book_image',$fileName, 'public');
             $data['file_anh_bia'] = $fileName;
         }
 

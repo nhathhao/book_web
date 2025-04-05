@@ -32,7 +32,7 @@ class AccountController extends Controller
         //Tạo tên file bằng cách lấy id của người dùng ghép với phần mở rộng của hình ảnh
         $fileName = Auth::user()->id . '.' . $request->file('photo')->extension();
         //File được lưu vào thư mục storage/app/public/profile
-        $request->file('photo')->storeAs('public/profile', $fileName);
+        $request->file('photo')->storeAs('profile', $fileName, 'public');
         $data['photo'] = $fileName;
         }
 
