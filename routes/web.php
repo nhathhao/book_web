@@ -3,9 +3,6 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -18,9 +15,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-Route::get('/sach','App\Http\Controllers\LayoutController@sach');
-Route::get('/sach/theloai/{id}','App\Http\Controllers\LayoutController@theloai');
-Route::get('/sach/chitiet/{id}','App\Http\Controllers\LayoutController@chitiet');
+Route::get('/','App\Http\Controllers\LayoutController@sach');
+Route::get('/theloai/{id}','App\Http\Controllers\LayoutController@theloai');
+Route::get('/chitiet/{id}','App\Http\Controllers\LayoutController@chitiet');
 
 Route::get('/accountpanel','App\Http\Controllers\AccountController@accountpanel')
 ->middleware('auth')->name("account"); 
