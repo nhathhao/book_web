@@ -1,7 +1,7 @@
 <x-guest-layout>
 
 <div class="flex justify-center my-4">
-    <img src="{{ asset('images/logo.jpg') }}" alt="Logo" class="w-32">
+    <img src="{{ asset('images/logo-hub.jpg') }}" alt="Logo" class="w-32">
 </div>
 
         
