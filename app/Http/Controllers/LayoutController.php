@@ -9,7 +9,7 @@ class LayoutController extends Controller
 {
     function sach()
     {
-        $data = DB::select("select * from sach where tieu_de!='test' order by gia_ban asc limit 0,10");
+        $data = DB::select("select * from sach order by gia_ban asc limit 0,10");
         return view("viewbook.index", compact("data"));
     }
 
