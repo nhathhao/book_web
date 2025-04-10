@@ -1,8 +1,5 @@
 <html>
     <body>
-        <?php /* @extends("layouts.sach_layout")
-        @section("title","Sách")
-        @section("content") */ ?>
     <x-book-layout>
         <x-slot name='title'>
             Sách
@@ -45,7 +42,7 @@
         <h4> {{$data->tieu_de}} </h4>
         <div class='info'>
             <div> 
-                <img src="{{asset('book_image/'.$data->file_anh_bia)}}" width="300px" height="300px" >
+                <img src="{{ $data->link_anh_bia}}" width="300px" height="300px" >
             </div>
             <div>
                 Nhà cung cấp: <b> {{$data->nha_cung_cap}}</b> <br>

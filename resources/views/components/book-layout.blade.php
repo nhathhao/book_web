@@ -9,13 +9,24 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #ffffff;
+                color: #000000;
+                margin: 0;
+                padding: 0;
+            }
+
             .navbar {
                 background-color: #000000;
                 font-weight: bold;
+                border-bottom: 1px solid #ffffff;
             }
 
             .nav-item a {
-                color: #fff !important;
+                color: #ffffff !important;
+                text-transform: uppercase;
+                font-size: 14px;
             }
 
             .navbar-nav {
@@ -24,36 +35,46 @@
 
             .list-book {
                 display: grid;
-                grid-template-columns: repeat(4, 24%);
+                grid-template-columns: repeat(4, 1fr);
                 gap: 20px;
             }
 
             .book {
                 margin: 10px;
                 text-align: center;
+                border: 1px solid #000000;
+                padding: 10px;
+                background-color: #ffffff;
             }
 
             footer {
-                background-color: #f8f9fa;
+                background-color: #000000;
+                color: #ffffff;
                 padding: 20px;
                 text-align: center;
+                font-size: 12px;
+            }
+
+            #bannerCarousel {
+                background-color: #ffffff; /* Set background to white */
             }
 
             #bannerCarousel .carousel-inner img {
-                width: 100%;
-                height: 400px; /* Set a fixed height for consistency */
-                object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+                width: 1512px;
+                height: 400px;
+                object-fit: cover;
             }
 
             .cart-icon {
-                color: black;
+                color: #000000;
                 cursor: pointer;
             }
 
             .cart-number {
                 width: 20px;
                 height: 20px;
-                background-color: #23b85c;
+                background-color: #000000;
+                color: #ffffff;
                 font-size: 12px;
                 border: none;
                 border-radius: 50%;
@@ -68,6 +89,65 @@
             .auth-buttons {
                 gap: 20px;
             }
+
+            .btn {
+                background-color: #000000;
+                color: #ffffff;
+                border: 1px solid #ffffff;
+                text-transform: uppercase;
+                font-size: 12px;
+            }
+
+            .btn:hover {
+                background-color: #ffffff;
+                color: #000000;
+            }
+
+            #bannerCarousel .carousel-indicators {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 6px;
+                position: absolute;
+                bottom: 10px; /* Move upward to create space from the bottom */
+                left: 50%; /* Center horizontally */
+                transform: translateX(-50%); /* Ensure proper centering */
+                list-style: none;
+                background-color: rgba(223, 204, 204, 0.5);
+                padding: 4px 6px;
+                border-radius: 15px;
+                width: fit-content; /* Dynamically adjust width */
+                z-index: 10; /* Ensure it stays above the carousel content */
+                margin: 0; /* Remove any default margins */
+            }
+
+            #bannerCarousel .carousel-indicators li {
+                width: 8px;
+                height: 8px;
+                background-color: #6c757d;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            #bannerCarousel .carousel-indicators li::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.5);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 5s linear; /* Adjust duration to match carousel interval */
+            }
+
+            #bannerCarousel .carousel-indicators .active::after {
+                transform: scaleX(1);
+            }
         </style>
     </head>
     <body>
@@ -75,7 +155,7 @@
         <header class="bg-light py-3">
             <div class="container d-flex justify-content-between align-items-center">
                 <h1 class="h4">
-                    <a href="{{ url('sach') }}" class="text-dark text-decoration-none">BOOKSphere</a>
+                    <a href="{{ url('/') }}" class="text-dark text-decoration-none">BOOKSphere</a>
                 </h1>
                 <form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search books..." aria-label="Search">
@@ -124,6 +204,12 @@
 
         <!-- Carousel -->
         <div id="bannerCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators" style="width: fit-content; height: fit-content; border-radius: 8px; background-color: rgba(0, 0, 0, 0.4);">
+                <li data-target="#bannerCarousel" data-slide-to="0" class=""></li>
+                <li data-target="#bannerCarousel" data-slide-to="1" class=""></li>
+                <li data-target="#bannerCarousel" data-slide-to="2" class="active"></li>
+                <li data-target="#bannerCarousel" data-slide-to="3" class=""></li>
+            </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="{{ asset('images/banner_sach1.jpg') }}" class="d-block w-100" alt="Banner 1">
@@ -132,7 +218,10 @@
                     <img src="{{ asset('images/banner_sach2.jpg') }}" class="d-block w-100" alt="Banner 1">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('images/sidebar_2.jpg') }}" class="d-block w-100" alt="Banner 3">
+                    <img src="{{ asset('images/banner_sach3.jpg') }}" class="d-block w-100" alt="Banner 3">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('images/banner_sach4.jpg') }}" class="d-block w-100" alt="Banner 3">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-slide="prev">
