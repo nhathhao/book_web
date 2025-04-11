@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Book;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -195,7 +196,22 @@ class BookController extends Controller
             });
         }
 
-        return view("viewbook.order");
+        $data = [];
+        $quantity = [];
+
+        if (session()->has('cart')) {
+            $cart = session("cart");
+            $list_book = array_keys($cart);
+            $quantity = $cart;
+
+            if (!empty($list_book)) {
+                $data = DB::table("sach")
+                    ->whereIn("id", $list_book)
+                    ->get();
+            }
+        }
+
+        return view("viewbook.order", compact("quantity", "data"));
     }
 
     public function bookview(Request $request)
@@ -206,7 +222,7 @@ class BookController extends Controller
         if ($the_loai != "") {
             $data = DB::select("select * from sach where the_loai = ?", [$the_loai]);
         } else {
-            $data = DB::select("select * from sach order by gia_ban asc limit 0,10");
+            $data = DB::select("select * from sach order by gia_ban asc limit 0,8");
         }
 
         return view("viewbook.bookview", compact("data"));
