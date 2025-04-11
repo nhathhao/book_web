@@ -211,4 +211,10 @@ class BookController extends Controller
 
         return view("viewbook.bookview", compact("data"));
     }
+
+    function timkiem(Request $request){
+        $keyword = $request->input('keyword');
+        $data = DB::select("select * from sach where tieu_de like ?",["%".$keyword."%"]);
+        return view( "viewbook.index", compact("data"));
+    }
 }

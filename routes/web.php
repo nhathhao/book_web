@@ -55,3 +55,5 @@ Route::post('/order/create','App\Http\Controllers\BookController@ordercreate')
 ->middleware('auth')->name('ordercreate');
 
 Route::post('/bookview','App\Http\Controllers\BookController@bookview')->name('bookview');
+
+Route::post('/timkiem/','App\Http\Controllers\BookController@timkiem');

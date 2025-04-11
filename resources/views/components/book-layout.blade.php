@@ -157,9 +157,10 @@
                 <h1 class="h4">
                     <a href="{{ url('/') }}" class="text-dark text-decoration-none">BOOKSphere</a>
                 </h1>
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search books..." aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form method="post" action="{{url('/timkiem')}}" class="form-inline">
+                    <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Sách bạn muốn tìm..." aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0 search-btn" type="submit">Tìm kiếm</button>
+                    {{csrf_field()}}
                 </form>
                 <div class='d-flex align-items-center justify-content-end auth-buttons' style='gap: 20px;'>
                     <div style='position:relative;' class='d-flex align-items-center'>
