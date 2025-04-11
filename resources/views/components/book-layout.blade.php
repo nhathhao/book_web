@@ -9,6 +9,13 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+            }
+
             body {
                 font-family: Arial, sans-serif;
                 background-color: #ffffff;
@@ -46,6 +53,10 @@
                 border: 1px solid #000000;
                 padding: 10px;
                 background-color: #ffffff;
+            }
+
+            main {
+                flex: 1;
             }
 
             footer {
@@ -205,6 +216,7 @@
         </header>
 
         <!-- Carousel -->
+        @if($showCarousel ?? true)
         <div id="bannerCarousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators" style="width: fit-content; height: fit-content; border-radius: 8px; background-color: rgba(0, 0, 0, 0.4);">
                 <li data-target="#bannerCarousel" data-slide-to="0" class=""></li>
@@ -235,8 +247,10 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+        @endif
 
         <!-- Navbar -->
+        @if($showNavbar ?? true)
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <ul class="navbar-nav mx-auto d-flex flex-row">
@@ -248,6 +262,7 @@
                 </ul>
             </div>
         </nav>
+        @endif
 
         <!-- Main Content -->
         <main style="width: 1000px; margin: 2px auto;">

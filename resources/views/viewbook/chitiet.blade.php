@@ -1,8 +1,8 @@
 <html>
     <body>
-    <x-book-layout>
+    <x-book-layout :showCarousel="false" :showNavbar="false">
         <x-slot name='title'>
-            Sách
+            Chi tiết sách
         </x-slot>
     <style>
         .info
@@ -39,7 +39,7 @@
         });
     </script>
 
-        <h4> {{$data->tieu_de}} </h4>
+        <h2>{{ $data->tieu_de }}</h2>
         <div class='info'>
             <div> 
                 <img src="{{ $data->link_anh_bia}}" width="300px" height="300px" >

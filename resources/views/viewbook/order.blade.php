@@ -1,4 +1,4 @@
-<x-book-layout>
+<x-book-layout :showCarousel="false" :showNavbar="false">
     <x-slot name='title'>
         Đặt hàng
     </x-slot>
