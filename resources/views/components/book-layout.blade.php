@@ -276,9 +276,9 @@
         <!-- Footer -->
         <footer>
             <div class="container">
-                <p><strong>About Us:</strong> Book Web is your go-to platform for amazing books.</p>
-                <p><strong>Contact:</strong> contact@bookweb.com</p>
-                <p><strong>Address:</strong> 123 Book Street, Reading City</p>
+            <p><strong>Về chúng tôi:</strong> Book Web là nền tảng lý tưởng để khám phá những cuốn sách tuyệt vời.</p>
+            <p><strong>Liên hệ:</strong> contact@booksphere.com</p>
+            <p><strong>Địa chỉ:</strong> 123 Đường Sách, Thành phố Đọc</p>
             </div>
         </footer>
     </body>
