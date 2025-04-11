@@ -25,6 +25,26 @@
             </div>
         </div>
 
+        <style>
+            .list-book {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+                margin-bottom: 20px; /* Add margin to prevent overlap with footer */
+            }
+
+            .book {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+            }
+
+            .btn-add-product {
+                margin-top: auto;
+            }
+        </style>
+
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script>
             $(document).ready(function(){

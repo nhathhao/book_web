@@ -26,7 +26,8 @@
             .nav-item a {
                 color: #ffffff !important;
                 text-transform: uppercase;
-                font-size: 14px;
+                font-size: 18px;
+                font-weight: bolder;
             }
 
             .navbar-nav {
@@ -157,9 +158,10 @@
                 <h1 class="h4">
                     <a href="{{ url('/') }}" class="text-dark text-decoration-none">BOOKSphere</a>
                 </h1>
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search books..." aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form method="post" action="{{url('/timkiem')}}" class="form-inline">
+                    <input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Sách bạn muốn tìm..." aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0 search-btn" type="submit">Tìm kiếm</button>
+                    {{csrf_field()}}
                 </form>
                 <div class='d-flex align-items-center justify-content-end auth-buttons' style='gap: 20px;'>
                     <div style='position:relative;' class='d-flex align-items-center'>
@@ -238,15 +240,11 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <ul class="navbar-nav mx-auto d-flex flex-row">
-                    <li class="nav-item mx-2">
-                        <a class="nav-link text-white" href="{{ url('sach/theloai/1') }}">Tiểu thuyết</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link text-white" href="{{ url('sach/theloai/2') }}">Truyện ngắn - tản văn</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link text-white" href="{{ url('sach/theloai/3') }}">Tác phẩm kinh điển</a>
-                    </li>
+                    @foreach($theLoai as $data)
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-white" href="{{ url('theloai/' . $data->id) }}">{{ $data->ten_the_loai }}</a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </nav>

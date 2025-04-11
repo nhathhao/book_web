@@ -2,25 +2,20 @@
 
 namespace App\View\Components;
 
-use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Http\Controllers\LayoutController;
 
 class BookLayout extends Component
 {
-    /**
-     * Create a new component instance.
-     */
+    public $theLoai;
+
     public function __construct()
     {
-        //
+        $this->theLoai = app(LayoutController::class)->getTheLoai();
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): View|Closure|string
+    public function render()
     {
-        return view('components.book-layout');
+        return view('components.book-layout', ['theLoai' => $this->theLoai]);
     }
 }

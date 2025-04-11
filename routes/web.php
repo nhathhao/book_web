@@ -2,10 +2,15 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
+View::composer('components.book-layout', function ($view) {
+    $theLoai = App::make('App\\Http\\Controllers\\LayoutController')->getTheLoai();
+    $view->with('theLoai', $theLoai);
+});
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect('/');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -55,3 +60,6 @@ Route::post('/order/create','App\Http\Controllers\BookController@ordercreate')
 ->middleware('auth')->name('ordercreate');
 
 Route::post('/bookview','App\Http\Controllers\BookController@bookview')->name('bookview');
+
+Route::post('/timkiem/','App\Http\Controllers\BookController@timkiem');
+
