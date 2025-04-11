@@ -26,7 +26,8 @@
             .nav-item a {
                 color: #ffffff !important;
                 text-transform: uppercase;
-                font-size: 14px;
+                font-size: 18px;
+                font-weight: bolder;
             }
 
             .navbar-nav {
@@ -239,15 +240,11 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <ul class="navbar-nav mx-auto d-flex flex-row">
-                    <li class="nav-item mx-2">
-                        <a class="nav-link text-white" href="{{ url('sach/theloai/1') }}">Tiểu thuyết</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link text-white" href="{{ url('sach/theloai/2') }}">Truyện ngắn - tản văn</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link text-white" href="{{ url('sach/theloai/3') }}">Tác phẩm kinh điển</a>
-                    </li>
+                    @foreach($theLoai as $data)
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-white" href="{{ url('theloai/' . $data->id) }}">{{ $data->ten_the_loai }}</a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </nav>

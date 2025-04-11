@@ -30,4 +30,11 @@ class LayoutController extends Controller
         $data = DB::table("sach")->get();
         return view("qlsach.book" , compact('data'));
     }
+
+    public function getTheLoai()
+    {
+        $theLoai = DB::table('the_loai')->get();
+        return $theLoai;
+    }
+
 }
