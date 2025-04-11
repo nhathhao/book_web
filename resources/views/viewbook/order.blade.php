@@ -21,7 +21,7 @@
                     @foreach($data as $key=>$row)
                        <tr>
                             <td align='center'>{{$key+1}}</td>
-                            <td>{{$row->tieu_de}}</td>
+                            <td align='left'>{{$row->tieu_de}}</td>
                             <td align='center'>{{$quantity[$row->id]}}</td>
                             <td align='center'>{{number_format($row->gia_ban,0,',','.')}}đ</td>
                             <td align='center'>
