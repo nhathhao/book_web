@@ -1,6 +1,6 @@
 <html>
     <body>
-    <x-book-layout :showCarousel="false" :showNavbar="false">
+    <x-book-layout :showCarousel="false">
         <x-slot name='title'>
             Chi tiết sách
         </x-slot>
