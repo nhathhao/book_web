@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Refined styles for pagination links */
+.pagination {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 0.25rem;
+}
+
+/* Updated styles for black pagination with white active state */
+.pagination a, .pagination span {
+    color: black; /* Black text for inactive links */
+    background-color: transparent; /* Transparent background for inactive links */
+    border: 1px solid black;
+    border-radius: 8px; /* Rounded corners */
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 0 0.25rem;
+    display: inline-block;
+}
+
+.pagination a:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+    border-color: black;
+}
+
+.pagination .active span {
+    background-color: black; /* Black background for active link */
+    color: white; /* White text for active link */
+    border-color: black;
+}

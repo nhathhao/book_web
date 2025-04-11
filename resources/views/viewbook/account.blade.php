@@ -1,4 +1,7 @@
-<x-account-panel>
+<x-book-layout :showCarousel="false" :showNavbar="false">
+<x-slot name='title'>
+            Tài khoản
+        </x-slot>
     @if ($errors->any())
         <div style='color:red;width:30%; margin:0 auto'>
             <div >
@@ -19,8 +22,14 @@
     <form method = 'post' action="{{route('saveinfo')}}"  enctype="multipart/form-data"
             style='width:30%; margin:0 auto'>
         
-        <div style='text-align:center;font-weight:bold;color:#15c;'>CẬP NHẬT THÔNG TIN CÁ NHÂN</div>
-        <img src="{{asset('storage/profile/'.$user->photo) }}" width="50px" class='mb-1'/> <br>
+        <style>
+            .profile-image {
+                border-radius: 50%;
+            }
+        </style>
+        <div style="text-align: center;">
+            <img src="{{asset('storage/profile/'.$user->photo) }}" width="50px" class='mb-1 profile-image'/> <br>
+        </div>
         <label>Tên</label>
         <input type='text' class='form-control form-control-sm' name='name' value="{{$user->name}}">
         <label>Email</label>
@@ -33,4 +42,4 @@
         {{ csrf_field() }}
         <div style='text-align:center;'><input type='submit' class='btn btn-primary mt-1' value='Lưu'></div>
     </form>
-</x-account-panel>
+</x-book-layout>

@@ -3,16 +3,18 @@
         Đặt hàng
     </x-slot>
 
-    <div>
-        <div style='color:#15c; font-weight:bold;font-size:20px;text-align:center'>DANH SÁCH SẢN PHẨM</div>
-        
-            <table class='book-table' style='margin:0 auto; width:100%; text-align:center'>
+    <main style="width: 1000px; margin: 2px auto;">
+        <div style="text-align: center;">
+            <div style="color:#15c; font-weight:bold;font-size:20px;">DANH SÁCH SẢN PHẨM</div>
+            <table class="book-table" style="margin: 0 auto; width: 100%; text-align: center;">
                 <thead>
-                    <th>STT</th>
-                    <th>Tên sách</th>
-                    <th>Số lượng</th>
-                    <th>Đơn giá</th>
-                    <th>Xóa</th>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên sách</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Xóa</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @php
@@ -43,35 +45,34 @@
                     </tr>
                 </tbody>
             </table>
-           
-                <div style='font-weight:bold;width:70%;margin:0 auto;text-align:center;'>
-                    @auth
-                        @if(count($data)>0)
-                        <form method='post' action = "{{route('ordercreate')}}" >
-                            Hình thức thanh toán <br>
-                            <div class='d-inline-flex'>
-                                <select name='hinh_thuc_thanh_toan' class='form-control form-control-sm'>
-                                    <option value='1'>Tiền mặt</option>
-                                    <option value='2'>Chuyển khoản</option>
-                                    <option value='3'>Thanh toán VNPay</option>
-                                </select>
-                            </div><br>
-                            <input type='submit' class='btn btn-sm btn-primary mt-1' value='ĐẶT HÀNG'>
-                            {{ csrf_field() }}
-                        </form>
-                        @else
-                            <span style="color: red; text-transform: uppercase; font-size: 15px;">
-                                Vui lòng chọn sản phẩm cần mua
-                            </span>
-                        @endif
-                        @else
-                            <span style="color: blue; text-transform: uppercase; font-size: 15px;">
-                                Vui lòng đăng nhập trước khi đặt hàng
-                            </span>
-                    @endauth
-                </div>
-            
-    </div>
+            <div style="font-weight:bold; margin-top: 20px;">
+                @auth
+                    @if(count($data)>0)
+                    <form method='post' action = "{{route('ordercreate')}}" >
+                        Hình thức thanh toán <br>
+                        <div class='d-inline-flex'>
+                            <select name='hinh_thuc_thanh_toan' class='form-control form-control-sm'>
+                                <option value='1'>Tiền mặt</option>
+                                <option value='2'>Chuyển khoản</option>
+                                <option value='3'>Thanh toán VNPay</option>
+                            </select>
+                        </div><br>
+                        <input type='submit' class='btn btn-sm btn-primary mt-1' value='ĐẶT HÀNG'>
+                        {{ csrf_field() }}
+                    </form>
+                    @else
+                        <span style="color: red; text-transform: uppercase; font-size: 15px;">
+                            Vui lòng chọn sản phẩm cần mua
+                        </span>
+                    @endif
+                    @else
+                        <span style="color: blue; text-transform: uppercase; font-size: 15px;">
+                            Vui lòng đăng nhập trước khi đặt hàng
+                        </span>
+                @endauth
+            </div>
+        </div>
+    </main>
 
 </x-book-layout>
 
