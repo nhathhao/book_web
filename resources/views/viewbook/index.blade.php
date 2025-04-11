@@ -2,7 +2,7 @@
     <body>
     <x-book-layout>
         <x-slot name='title'>
-            Sách
+            BOOKSphere
         </x-slot>
         <div id='book-view-div'>
             <div class='list-book'>
