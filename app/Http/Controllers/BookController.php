@@ -42,7 +42,7 @@ class BookController extends Controller
 
     public function booklist()
     {
-        $data = DB::table("sach")->get();
+        $data = DB::table("sach")->paginate(20);
         return view("viewbook.book_list", compact("data"));
     }
 
