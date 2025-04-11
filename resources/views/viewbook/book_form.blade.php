@@ -1,11 +1,14 @@
-<x-account-panel>
+<x-book-layout :showCarousel="false" :showNavbar="false">
+<x-slot name='title'>
+            Quản lý sách
+</x-slot>
 <div class="panel panel-default" style="width:50%; margin:0 auto;">
 <div class="panel-body">
 <form action="{{route('booksave',['action'=>$action])}}" method = "post" enctype="multipart/form-data">
     @if($action=="add")
-    <div style='text-align:center;font-weight:bold;color:#15c;'>THÊM THÔNG TIN SÁCH</div>
+    <div style='text-align:center;font-weight:bold;color:#000;'>THÊM THÔNG TIN SÁCH</div>
     @else
-    <div style='text-align:center;font-weight:bold;color:#15c;'>SỬA THÔNG TIN SÁCH</div>
+    <div style='text-align:center;font-weight:bold;color:#000;'>SỬA THÔNG TIN SÁCH</div>
     @endif
 
     <label>Tiêu đề</label>
@@ -40,7 +43,7 @@
     
     <label>Ảnh đại diện</label><br>
         @if($action=="edit")
-            <img src="{{asset('storage/book_image/'.$sach->file_anh_bia) }}" width="50px" class='mb-1'/>
+            <img src="{{$sach->link_anh_bia}}" width="50px" class='mb-1'/>
             <input type ='hidden' value='{{$sach->id}}' name='id'>
         @endif
     <input type="file" name="file_anh_bia" accept="image/*" class="form-control-file">
@@ -62,4 +65,4 @@
 </form>
 </div>
 </div>
-</x-account-panel>
+</x-book-layout>

@@ -1,6 +1,7 @@
-<x-account-panel>
-    
-    <div style='text-align:center; color:#15c; font-weight:bold; font-size:20px;'>QUẢN LÝ SÁCH</div>
+<x-book-layout :showCarousel="false" :showNavbar="false">
+<x-slot name='title'>
+            Quản lý sách
+        </x-slot>
     <a href="{{route('bookcreate')}}" class='btn btn-sm btn-success mb-1'>Thêm</a>
     @if (session('status'))
     <div class="alert alert-success">
@@ -47,4 +48,16 @@
             @endforeach
         </tbody>
     </table>
-</x-account-panel>
+    <div class="mt-4">
+        {{ $data->links() }}
+    </div>
+    <script>
+    $(document).ready(function(){
+        $('#book-table').DataTable({
+            responsive: true,
+            "bStateSave": true,
+            "paging": false // Disable DataTables' pagination
+        });
+    });
+    </script>
+</x-book-layout>

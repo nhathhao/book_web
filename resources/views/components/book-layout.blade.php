@@ -65,6 +65,7 @@
                 padding: 20px;
                 text-align: center;
                 font-size: 12px;
+                pointer-events: none;
             }
 
             #bannerCarousel {
@@ -159,6 +160,93 @@
 
             #bannerCarousel .carousel-indicators .active::after {
                 transform: scaleX(1);
+            }
+
+            .table {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .col-md-9 {
+                flex: 0 0 75%;
+                max-width: 75%;
+            }
+
+            .col-md-3 {
+                flex: 0 0 25%;
+                max-width: 25%;
+            }
+
+            .sidebar {
+                background-color: #f8f9fa;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .sidebar .list-group-item {
+                border: none;
+                padding: 10px 15px;
+                font-size: 16px;
+                font-weight: bold;
+                color: #333;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            .sidebar .list-group-item:hover {
+                background-color: #007bff;
+                color: #fff;
+            }
+
+            .sidebar .list-group-item a {
+                text-decoration: none;
+                color: inherit;
+            }
+
+            .sidebar .list-group-item {
+                transition: all 0.3s ease;
+            }
+
+            .sidebar .list-group-item:hover {
+                background-color: #000;
+                color: #fff;
+            }
+
+            /* Exclude footer from hover effect */
+            footer:hover {
+                background-color: inherit !important;
+                color: inherit !important;
+                pointer-events: auto;
+            }
+
+            .pagination {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 0.25rem;
+                margin-top: 1rem;
+            }
+
+            .pagination a, .pagination span {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.875rem; /* Adjusted font size */
+                border: 1px solid #ddd;
+                border-radius: 0.25rem;
+                text-decoration: none;
+                color: #007bff;
+                transition: background-color 0.2s, border-color 0.2s;
+            }
+
+            .pagination a:hover {
+                background-color: #e9ecef;
+                border-color: #007bff;
+            }
+
+            .pagination .active span {
+                background-color: #007bff;
+                color: white;
+                border-color: #007bff;
             }
         </style>
     </head>
@@ -267,7 +355,25 @@
         <!-- Main Content -->
         <main style="width: 1000px; margin: 2px auto;">
             <div class="row">
-                <div class="col-12">
+                @php
+                    $showSidebar = request()->routeIs('booklist') || request()->routeIs('account');
+                @endphp
+
+                @if($showSidebar)
+                <div class="col-md-3">
+                    <div class="sidebar">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="{{ route('account') }}">Thông tin cá nhân</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('booklist') }}">Quản lý sách</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                @endif
+                <div class="col-md-9">
                     {{$slot}}
                 </div>
             </div>
